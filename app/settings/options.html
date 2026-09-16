@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuroko for Dayforce</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="card">
+      <h1 class="page-title"><img src="kuroko-white.png" id="kuroko-icon" />Kuroko for Dayforce</h1>
+
+      <!-- Section 1: Default Working Days -->
+      <section class="section" id="section-working-days">
+        <h2 class="section-title">Default Working Days</h2>
+        <div class="days-table-wrapper">
+          <table class="days-table">
+            <thead>
+              <tr>
+                <th class="day-col weekend">Sun</th>
+                <th class="day-col">Mon</th>
+                <th class="day-col">Tue</th>
+                <th class="day-col">Wed</th>
+                <th class="day-col">Thu</th>
+                <th class="day-col">Fri</th>
+                <th class="day-col weekend">Sat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="day-col weekend"><input type="checkbox" data-day="Sun" /></td>
+                <td class="day-col"><input type="checkbox" data-day="Monday" /></td>
+                <td class="day-col"><input type="checkbox" data-day="Tuesday" /></td>
+                <td class="day-col"><input type="checkbox" data-day="Wednesday" /></td>
+                <td class="day-col"><input type="checkbox" data-day="Thursday" /></td>
+                <td class="day-col"><input type="checkbox" data-day="Friday" /></td>
+                <td class="day-col weekend"><input type="checkbox" data-day="Saturday" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="work-on-holiday">
+          <div class="time-range-row">
+            <input type="checkbox" id="chk-work-on-holiday" />
+            <label class="toggle-label">Work on a Holiday</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Default Working Time -->
+      <section class="section" id="section-working-time">
+        <h2 class="section-title">Default Working Time</h2>
+        <div class="time-range-list" id="working-time-list"></div>
+        <button class="btn btn-add" id="add-working-time">+ Add Time Range</button>
+      </section>
+
+      <!-- Section 3: Half-Day Off Working Time -->
+      <section class="section" id="section-halfday-time">
+        <h2 class="section-title">Half-Day Off Working Time</h2>
+        <div class="time-range-list" id="halfday-time-list"></div>
+        <button class="btn btn-add" id="add-halfday-time">+ Add Time Range</button>
+      </section>
+
+      <!-- Section 4: Override Working Day & Time -->
+      <section class="section" id="section-overrides">
+        <h2 class="section-title">Override Working Day &amp; Time</h2>
+        <div class="override-list" id="override-list"></div>
+        <button class="btn btn-add" id="add-override">+ Add Day Override</button>
+      </section>
+
+      <!-- Action Bar -->
+      <div class="action-bar">
+        <button class="btn btn-save" id="btn-save">Save</button>
+        <button class="btn btn-reset" id="btn-reset">Reset to Defaults</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Settings saved.</div>
+
+  <script src="../config.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

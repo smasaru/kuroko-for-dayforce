@@ -1,0 +1,6 @@
+0.1.0.0 First version
+    + Fill a single day
+    + Auto fill
+    + Skip holiday
+    + Skip if records exist
+    + Half day adjustment
