@@ -188,7 +188,7 @@ class Dayforce {
                 }
 
                 // Half day off is in place
-                if(dayOffHours == 4) {
+                if(dayOffHours >= 4) {
                     workingTime = this.#getHalfWorkingTime();
                     addMealComplete = true;
                 } 

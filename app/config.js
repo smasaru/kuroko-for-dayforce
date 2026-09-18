@@ -18,7 +18,6 @@ const _CONFIG = {
     DF__DEFAULT_HALF_DAY_OFF_WORKING_TIME: [{ start: 9, end: 13 }],
     DF__OVERRIDE_WORKING_DAY_TIME: [],
      // Default: [] / Sample: [{day:"Mon", time:[{start: 8, end: 11}, {start: 12, end: 17}]}] DF__DEFAULT_HALF_DAY_OFF_WORKING_TIME: [] // Default: [{start:9, end: 13}]
-
 }
 
 const localStorage = {
@@ -53,7 +52,7 @@ const loadConfigOptions = async () => {
         if(key in savedFF) {
             ff[key] = savedFF[key];
         } else {
-            ff[key] = _CONFIG[key].value;            
+            ff[key] = _CONFIG[key];            
         }
     }
     return ff;

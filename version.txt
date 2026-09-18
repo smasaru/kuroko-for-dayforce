@@ -4,3 +4,4 @@
     + Skip holiday
     + Skip if records exist
     + Half day adjustment
+0.1.0.1 Bug - Initial option values are not populated
