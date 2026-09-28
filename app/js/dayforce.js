@@ -19,7 +19,7 @@ class Dayforce {
             console.log(`${this.LOG} detected HTMLEmployeeTimeSheet!`);
             
             const customToolBar = document.querySelector("span.customToolbar");
-            const fillADayBtn = this.#UTILS.createButton("fill a day", {
+            const fillADayBtn = this.#UTILS.createButton("Fill a day", {
                 classes: [],
                 styles: {"margin-left":"10px"},
                 onClick: (e) => {
@@ -30,13 +30,20 @@ class Dayforce {
                 classes: [],
                 styles: {"margin-left":"10px"},
                 onClick: (e) => {
-                    console.log("button clicked!");
                     this.#runAutomaticFillUp();
                 }
             });
+            const selectAllBtn = this.#UTILS.createButton("Select all", {
+                classes: [],
+                styles: {"margin-left":"15px"},
+                onClick: (e) => {
+                    this.#selectAllEntries();
+                }
+            })
 
             customToolBar.append(fillADayBtn);
             customToolBar.append(autoFillBtn);
+            customToolBar.append(selectAllBtn);
         });
     }
 
@@ -330,17 +337,49 @@ class Dayforce {
         return (found)? true: false;
     }
 
-    // Simulate an ArrowRight key down
-    #triggerArrowRightKeyDown = () => {
-        // direction can be: 'ArrowUp', 'ArrowDown', 'ArrowLeft', or 'ArrowRight'
+    // Simulate an ArrowRight key down (optionally with Shift)
+    #triggerArrowRightKeyDown = (__withShift = false) => {
         const event = new KeyboardEvent("keydown", {
             key: 'ArrowRight',
             code: 'ArrowRight',
             keyCode: 39,
-            bubbles: true,      // Allows the event to bubble up the DOM tree
-            cancelable: true    // Allows event.preventDefault() to be called
+            shiftKey: __withShift,  // ← 引数で制御
+            bubbles: true,
+            cancelable: true
         });
 
         document.querySelector("#VirtualGrid").dispatchEvent(event);
     }
+
+    // Simulate an ArrowLeft key down
+    #triggerArrowLeftKeyDown = () => {
+        const event = new KeyboardEvent("keydown", {
+            key: 'ArrowLeft',
+            code: 'ArrowLeft',
+            keyCode: 37,
+            bubbles: true,
+            cancelable: true
+        });
+
+        document.querySelector("#VirtualGrid").dispatchEvent(event);
+    }
+
+    #selectAllEntries = () => {
+        // Get current selecting day
+        const selectingCell = document.querySelector(".TimesheetVirtualGridEditControls");
+        const selectingHeader = this.#getHeaderCell(selectingCell);
+        const currentDay = this.#getDate(selectingHeader).getDate();
+        const todayDay = new Date().getDate();
+
+        // Trigger ArrowLeft to move selection to 1st day of the month
+        for (let i = 0; i < currentDay - 1; i++) {
+            this.#triggerArrowLeftKeyDown();
+        }
+
+        // Trigger Shift + ArrowRight to the today's date
+        for (let i = 0; i < todayDay - 1; i++) {
+            this.#triggerArrowRightKeyDown(true);  // true = with Shift
+        }
+    }
+
 }
