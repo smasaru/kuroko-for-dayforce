@@ -203,6 +203,7 @@ class Dayforce {
                 // Whole day off is in place
                 if(dayOffHours >= 8) {
                     console.log(`${this.LOG} Do nothing for a day off.`);
+                    this.#clickDeleteBtn();
                     clearAllFlags();
                     resolve();
                     return; // Do nothing!
@@ -279,6 +280,10 @@ class Dayforce {
 
     #getAddShiftBtn = () => {
         return document.querySelector(".actionControl").querySelector("div[id^='UI_Mixins__TooltipMixin']");
+    }
+
+    #clickDeleteBtn = () => {
+        document.querySelector(".TimesheetVirtualGridEditControls").querySelector(".deleteButton .dijitButtonNode").click()
     }
 
     #getLeftVal = (__elm) => {
