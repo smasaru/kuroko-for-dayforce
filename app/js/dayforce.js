@@ -114,7 +114,7 @@ class Dayforce {
                 this.#triggerArrowRightKeyDown();
                 await new Promise(resolve => setTimeout(()=>{
                         resolve();
-                    }, 50)
+                    }, 70)
                 );
             }
 
@@ -330,7 +330,7 @@ class Dayforce {
     // Return false when it's holiday 
     #checkWorkingDay = (__targetHeader) => {
         // Check holiday
-        if(__targetHeader.classList.contains("empHolidayBackground")) {
+        if(!this.#runtimeCO.DF__WORK_ON_A_HOLIDAY && __targetHeader.classList.contains("empHolidayBackground")) {
             return false;
         }
 
